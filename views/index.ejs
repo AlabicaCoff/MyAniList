@@ -1,0 +1,162 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container" style="padding: 0; min-width: 100%;">
+    <div style="position: relative;">
+        <div class="main_banner_wrap" style="background:url(https://desu.shikimori.one/system/user_images/original/968094/1987249.jpg)no-repeat 50% 0;background-size:cover; filter: blur(5px);"></div>
+        <div class="main-text">
+            <h1 style="margin-bottom: 1.5rem;">MyAniList</h1>
+            <p style="font-size: 22px; font-weight: normal;">Discover your top anime picks from every season.</p>
+        </div>
+    </div>
+    <div class="day-row-wrap">
+        <div class="gx-5 my-0 mx-auto bg-white">
+            <div class="d-flex flex-lg-row flex-column mx-1">
+                <% if (day == "sunday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/sunday">Sunday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/sunday">Sunday</a>
+                    </div>
+                <% } %>
+                <% if (day == "monday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/monday">Monday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/monday">Monday</a>
+                    </div>
+                <% } %>
+                
+                <% if (day == "tuesday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/tuesday">Tuesday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/tuesday">Tuesday</a>
+                    </div>
+                <% } %>
+                
+                <% if (day == "wednesday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/wednesday">Wednesday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/wednesday">Wednesday</a>
+                    </div>
+                <% } %>
+                
+                <% if (day == "thursday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/thursday">Thursday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/thursday">Thursday</a>
+                    </div>
+                <% } %>
+                
+                <% if (day == "friday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/friday">Friday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/friday">Friday</a>
+                    </div>
+                <% } %>
+                
+                <% if (day == "saturday") { %>
+                    <div class="col text-center py-2 select-bg">
+                        <a class="select-day" href="/schedules/saturday">Saturday</a>
+                    </div>
+                <% } else { %>
+                    <div class="col text-center py-2">
+                        <a class="day" href="/schedules/saturday">Saturday</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="text-center my-5">
+        <h1>Schedules</h1>
+    </div>
+    <div class="d-flex flex-lg-row flex-column main-schedules" style="gap:20px">
+        <div class="col main-schedules-col">
+            <h2 class="text-center" id="all-animes">All Animes</h2>
+            <div class="schedules-container">
+                <ul class="anime-list">
+                    <% if ( animes && animes.length <= 0) { %>
+                        <div style="text-align: center;">
+                            <p>No data</p>
+                        </div>
+                    <% } else { %>
+                        <% animes.forEach(anime => { %>
+                        <div class="anime-card my-2">
+                            <img src="<%= anime.images.jpg.image_url %>" width="150" height="190">
+                            <div class="anime-info-wrap">
+                                <div class="anime-info">
+                                    <% if (anime.title) { %>
+                                        <p><b>Title: </b><%= anime.title %></p>
+                                    <% } %>
+                                    <% if (anime.episodes) { %>
+                                        <p><b>Episode(s): </b><%= anime.episodes %></p>
+                                    <% } %>
+                                    <% if (anime.broadcast.string) { %>
+                                        <p><b>Time: </b><%= anime.broadcast.string %></p>
+                                    <% } %>
+                                    <% if (anime.isAdded) { %>
+                                        <div class="btn btn-secondary" style="width: 150px;" disabled>Already Added</div>
+                                    <% } else { %>
+                                        <a class="btn btn-primary" style="width: 150px;" href="/add_anime/<%= anime.mal_id %>" role="button">Add to Schedules</a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <% }); %>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div class="col main-schedules-col">
+            <h2 class="text-center" id="my-animes">My Animes</h2>
+            <div class="schedules-container">
+                <ul class="anime-list">
+                    <% if (myAnimes && myAnimes.length <= 0) { %>
+                        <div style="text-align: center;">
+                            <p>No data</p>
+                        </div>
+                    <% } else { %>
+                        <% myAnimes.forEach(anime => { %>
+                        <div class="anime-card my-2">
+                            <img src="<%= anime.image %>" width="150" height="190">
+                            <div class="anime-info-wrap">
+                                <div class="anime-info">
+                                    <% if (anime.title) { %>
+                                        <p><b>Title: </b><%= anime.title %></p>
+                                    <% } %>
+                                    <% if (anime.episodes) { %>
+                                        <p><b>Episode(s): </b><%= anime.episodes %></p>
+                                    <% } %>
+                                    <% if (anime.day && anime.time) { %>
+                                        <p><b>Time: </b><%= anime.broadcast %></p>
+                                    <% } %>
+                                    <a class="btn btn-danger" style="width: 200px;" href="/remove_anime/<%= anime._id %>" role="button">Remove from Schedules</a>
+                                </div>
+                        </div>
+                        </div>
+                        <hr>
+                    <% }); %>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

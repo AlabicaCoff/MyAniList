@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container" style="padding: 30px; margin-top: 86px; background-color: whitesmoke; border-radius: 10px;">
+    <div class="row">
+        <h1 class="mb-3">Search Result For : <small><%= query %></small></h1>
+        <hr>
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <% if (locals.animes && locals.animes.length > 0) { %>
+                <% animes.forEach(anime => { %>
+                    <div class="d-flex flex-column align-items-center bg-secondary" style="width: 150px;">
+                        <img src="<%= anime.images.jpg.image_url %>" width="150" height="190">
+                        <div class="anime-info-wrap text-center">
+                            <% if (anime.title) { %>
+                                <p><b>Title: </b><%= anime.title %></p>
+                            <% } %>
+                            <% if (anime.episodes) { %>
+                                <p><b>Episode(s): </b><%= anime.episodes %></p>
+                            <% } %>
+                            <% if (anime.broadcast.string) { %>
+                                <p><b>Time: </b><%= anime.broadcast.string %></p>
+                            <% } %>
+                            <% if (anime.isAdded) { %>
+                                <div class="btn btn-secondary" style="width: 150px;">Already Added</div>
+                            <% } else { %>
+                                <a class="btn btn-primary" style="width: 150px;" href="/add_anime/<%= anime.mal_id %>" role="button">Add to Schedules</a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <hr>
+                <% }); %>
+            <% } else { %>
+                <span>No match animes</span>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
