@@ -1,6 +1,6 @@
 # 🐳 MyAniList
 
-A simple Node.js application containerized with Docker and managed using Docker Compose.
+A simple Node.js application with a MongoDB database, containerized using Docker and managed via Docker Compose.
 
 ## 📖 Feature
 - Discover & Track your top anime picks for season.
