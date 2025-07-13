@@ -18,8 +18,7 @@ A simple Node.js application containerized with Docker and managed using Docker 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/your-nodejs-app.git
-cd your-nodejs-app
+git clone https://github.com/AlabicaCoff/MyAniList.git
 ```
 ### 2. Run the project on local
 ```bash
